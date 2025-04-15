@@ -42,20 +42,20 @@ namespace sc_log {
  ************************/
 
 enum class log_levels {
-  NONE = sc_core::SC_NONE,
-  CRITICAL = sc_core::SC_NONE,
-  WARN = sc_core::SC_LOW,
-  INFO = sc_core::SC_MEDIUM,
-  DEBUG = sc_core::SC_HIGH,
-  TRACE = sc_core::SC_DEBUG,
+  none = sc_core::SC_NONE,
+  critical = sc_core::SC_NONE,
+  warn = sc_core::SC_LOW,
+  info = sc_core::SC_MEDIUM,
+  debug = sc_core::SC_HIGH,
+  trace = sc_core::SC_DEBUG,
 
   UNSET = INT_MAX
 };
 
 const static std::map<log_levels, std::string> log_level_map = {
-    {log_levels::CRITICAL, "CRITICAL"}, {log_levels::NONE, "NONE"},
-    {log_levels::WARN, "WARN"},         {log_levels::INFO, "INFO"},
-    {log_levels::DEBUG, "DEBUG"},       {log_levels::TRACE, "TRACE"}};
+    {log_levels::critical, "CRITICAL"}, {log_levels::none, "NONE"},
+    {log_levels::warn, "WARN"},         {log_levels::info, "INFO"},
+    {log_levels::debug, "DEBUG"},       {log_levels::trace, "TRACE"}};
 
 /**
  * @fn log as_log(int)
@@ -71,7 +71,7 @@ inline log_levels as_log(int logLevel) {
       return l.first;
     }
   }
-  return log_levels::TRACE;
+  return log_levels::trace;
 }
 
 /**
@@ -87,7 +87,7 @@ inline log_levels as_log(std::string logName) {
     if (logName == l.second)
       return l.first;
   }
-  return log_levels::TRACE;
+  return log_levels::trace;
 }
 /**
  * @fn std::istream& operator >>(std::istream&, log&)
@@ -228,7 +228,7 @@ struct ScLogger {
    * @param verbosity the log level
    */
   ScLogger(const char *file, int line,
-           log_levels verbosity = sc_log::log_levels::INFO)
+           log_levels verbosity = sc_log::log_levels::info)
       : t(nullptr), file(file), line(line), level(verbosity) {}
 
   ScLogger() = delete;

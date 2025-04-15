@@ -127,11 +127,11 @@ static const char *_SC_LOG_FMT_EMPTY_STR = "";
   if (SCP_VBSTY_CHECK(lvl, __VA_ARGS__))                                       \
   SCP_MSG(lvl, __VA_ARGS__)
 
-#define SC_CRITICAL(...) SC_LOG_AT(sc_log::log_levels::CRITICAL, __VA_ARGS__)
-#define SC_WARN(...) SC_LOG_AT(sc_log::log_levels::WARN, __VA_ARGS__)
-#define SC_INFO(...) SC_LOG_AT(sc_log::log_levels::INFO, __VA_ARGS__)
-#define SC_DEBUG(...) SC_LOG_AT(sc_log::log_levels::DEBUG, __VA_ARGS__)
-#define SC_TRACE(...) SC_LOG_AT(sc_log::log_levels::TRACE, __VA_ARGS__)
+#define SC_CRITICAL(...) SC_LOG_AT(sc_log::log_levels::critical, __VA_ARGS__)
+#define SC_WARN(...) SC_LOG_AT(sc_log::log_levels::warn, __VA_ARGS__)
+#define SC_INFO(...) SC_LOG_AT(sc_log::log_levels::info, __VA_ARGS__)
+#define SC_DEBUG(...) SC_LOG_AT(sc_log::log_levels::debug, __VA_ARGS__)
+#define SC_TRACE(...) SC_LOG_AT(sc_log::log_levels::trace, __VA_ARGS__)
 
 /** @} */ // end of sc_log-report
 #endif    /* _SC_LOG_REPORT_H_ */

@@ -60,15 +60,15 @@ class scp_logger_test : public sc_log::sc_log_global_logger_handler {
                                 std::string_view scname,
                                 const char *tname) const {
     if (logger.features.size() && logger.features[0] == "test_handler") {
-      return sc_log::log_levels::INFO;
+      return sc_log::log_levels::info;
     }
     if (scname == "sc_log_test") {
       /* test every time, and dont cache */
-      return sc_log::log_levels::WARN;
+      return sc_log::log_levels::warn;
     }
     /* Cache this one which will catch the normal SCMOD case for mod_a */
-    logger.level = sc_log::log_levels::TRACE;
-    return sc_log::log_levels::TRACE;
+    logger.level = sc_log::log_levels::trace;
+    return sc_log::log_levels::trace;
   }
 };
 static scp_logger_test test_logger_handler;
