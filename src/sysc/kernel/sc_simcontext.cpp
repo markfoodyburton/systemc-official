@@ -1380,6 +1380,18 @@ sc_simcontext::next_time( sc_time& result ) const
          ) {
 	sc_event_timed* et = m_timed_events->top();
 	if( et->event() != 0 ) {
+        if (et->event()->is_observer()) {
+            et=m_timed_events->extract_top();
+            sc_time tmp;
+            if (next_time(tmp)) {
+                m_timed_events->insert(et);
+                result=et->notify_time();
+                return true;
+            } else {
+                m_timed_events->insert(et);
+                return false;
+            }
+        }
 	    result = et->notify_time();
 	    return true;
 	}

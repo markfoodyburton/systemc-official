@@ -272,6 +272,7 @@ class SC_API sc_event
     friend class sc_mutex;
     friend class sc_join;
     friend class sc_trace_file;
+    friend class sc_observer_event;
 
 public:
 
@@ -288,6 +289,8 @@ public:
       { return m_parent_with_hierarchy_flag; }
     bool in_hierarchy() const
       { return m_parent_with_hierarchy_flag.get_flag() == true; }
+
+    bool is_observer() {return m_observer;}
 
     void notify();
     void notify( const sc_time& );
@@ -335,6 +338,7 @@ private:
     sc_simcontext*  m_simc;
     sc_dt::uint64   m_trigger_stamp; // delta of last trigger
     notify_t        m_notify_type;
+    bool            m_observer;
     int             m_delta_event_index;
     sc_event_timed* m_timed;
 
@@ -409,6 +413,12 @@ private:
     sc_event_timed& operator = ( const sc_event_timed& );
 };
 
+// Observer event class
+class sc_observer_event : public sc_event {
+public:
+  sc_observer_event(const char *name) : sc_event(name) { m_observer = true; };
+  sc_observer_event() : sc_event() { m_observer = true; }
+};
 
 // IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 
